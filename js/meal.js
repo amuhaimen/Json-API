@@ -10,6 +10,7 @@ const displayMeals = (meals) => {
   mealsContainer.innerText = "";
 
   meals.forEach((meal) => {
+    // console.log(meal);
     const mealDiv = document.createElement("div");
     mealDiv.classList.add("col");
     mealDiv.innerHTML = `
@@ -23,9 +24,14 @@ const displayMeals = (meals) => {
                 lead-in to additional content. This content is a little bit
                 longer.
               </p>
+              <button onClick="loadMealDetails(${meal.idMeal})" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mealDetails">
+          Details
+           </button>
             </div>
+            
           </div>
-        </div>
+         
+     </div>
      `;
     mealsContainer.appendChild(mealDiv);
   });
@@ -38,4 +44,20 @@ const searchMeal = () => {
   searchFeild.value = "";
 };
 
-loadMeals("burger");
+const loadMealDetails = (idMeal) => {
+  const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayMealDetails(data.meals[0]));
+};
+
+const displayMealDetails = (meal) => {
+  document.getElementById("mealDetailsLabel").innerText = meal.strMeal;
+  const mealBody = document.getElementById("mealBody");
+  mealBody.innerHTML = `
+  <img class="img-fluid" src="${meal.strMealThumb}" />
+  `;
+  console.log(meal);
+};
+
+loadMeals("chicken");
