@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Country Details</title>
+    <style>
+      #all_countries {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .country {
+        border: blueviolet solid 2px;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>All Countries</h1>
+    <section>
+      <div id="detailsContainer">
+        <img id="img" alt="image" />
+        <h1 id="name">Name:</h1>
+      </div>
+    </section>
+    <section>
+      <div id="all_countries"></div>
+    </section>
+    <script src="js/daynamicApi.js"></script>
+  </body>
+</html>
